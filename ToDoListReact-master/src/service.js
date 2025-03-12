@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const apiUrl = "http://localhost:5244";
+// const  apiUrl = "http://localhost:5244";
+exios.defults.baseURL = env.REACT_APP_APIURL;
 
 const service = {
   getTasks: async () => {
@@ -10,7 +11,7 @@ const service = {
       return;
     }
     try {
-      const result = await axios.get(`${apiUrl}/allTasks`, {
+      const result = await axios.get(`/allTasks`, {
         params: { userId }
       });
       if (result.status !== 200) {
@@ -30,7 +31,7 @@ const service = {
       return;
     }
     try {
-      const result = await axios.post(`${apiUrl}/addTask/${NameT}/${userId}`);
+      const result = await axios.post(`/addTask/${NameT}/${userId}`);
       if (result.status !== 200) {
         console.log("Error adding data");
         return;
@@ -43,7 +44,7 @@ const service = {
   },
   setCompleted: async (id, isComplete) => {
     try {
-      const result = await axios.put(`${apiUrl}/updateTask/${id}`, { isComplete });
+      const result = await axios.put(`/updateTask/${id}`, { isComplete });
       if (result.status !== 200) {
         console.log("Error updating data");
         return;
@@ -56,7 +57,7 @@ const service = {
   },
   deleteTask: async (id) => {
     try {
-      const result = await axios.delete(`${apiUrl}/deleteTask/${id}`);
+      const result = await axios.delete(`/deleteTask/${id}`);
       if (result.status !== 200) {
         console.log("Error deleting data");
         return;
@@ -69,7 +70,7 @@ const service = {
   },
   register: async (Name, Password) => {
     try {
-      const result = await axios.post(`${apiUrl}/Register/${Name}/${Password}`);
+      const result = await axios.post(`/Register/${Name}/${Password}`);
       if (result.status === 200) {
         const userId = result.data;
         localStorage.setItem('userId', userId);
@@ -86,7 +87,7 @@ const service = {
   login: async (Password) => {
     // debugger
     try {
-      const result = await axios.post(`${apiUrl}/login/${Password}`);
+      const result = await axios.post(`/login/${Password}`);
       if (result.status === 200) {
         const userId = result.data;
         localStorage.setItem('userId', userId);
