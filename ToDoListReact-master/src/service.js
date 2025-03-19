@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const  apiUrl = "http://localhost:5244";
-exios.defults.baseURL = env.REACT_APP_APIURL;
+exios.defults.baseURL = process.env.REACT_APP_APIURL;
 
 const service = {
   getTasks: async () => {
